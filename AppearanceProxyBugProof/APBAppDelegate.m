@@ -8,14 +8,33 @@
 
 #import "APBAppDelegate.h"
 
+@import MessageUI;
+
 @implementation APBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self styleApp];
     return YES;
 }
-							
+
+
+- (void)styleApp
+{
+    // Set a custom style for navigation bars
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"MarkerFelt-Wide" size:20.0f],
+                                                           NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:226.0/255.0 green:83.0/255.0 blue:82.0/255.0 alpha:1]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    //Attempt to undo that style for Message/Mail Compose View Controller
+    [[UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], [MFMessageComposeViewController class], nil] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], [MFMessageComposeViewController class], nil] setTintColor:nil];
+    [[UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], [MFMessageComposeViewController class], nil] setTitleTextAttributes:nil];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
