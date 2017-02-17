@@ -7,6 +7,7 @@
 //
 
 #import "APBAppDelegate.h"
+#import "APBCustomNavController.h"
 
 @import MessageUI;
 
@@ -15,51 +16,81 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [self styleApp];
+    NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+    
+    NSString *customKey = @"CUSTOM_NAV";
+    UIViewController *root;
+    if ([environment[customKey] boolValue]) {
+        [self styleAppWithCustomNav];
+        UIStoryboard *custom = [UIStoryboard storyboardWithName:@"Main-custom" bundle:nil];
+        root = [custom instantiateInitialViewController];
+    } else {
+        [self styleApp];
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        root = [main instantiateInitialViewController];
+    }
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = root;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
+- (void)styleAppWithCustomNav
+{    
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[APBCustomNavController class]]] setTitleTextAttributes:[self fontAttributes]];
+    
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[APBCustomNavController class]]] setBarStyle:[self barStyle]];
+    
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[APBCustomNavController class]]] setBarTintColor:[self barTintColor]];
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[APBCustomNavController class]]] setTintColor:[self tintColor]];
+}
 
 - (void)styleApp
 {
     // Set a custom style for navigation bars
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"MarkerFelt-Wide" size:20.0f],
-                                                           NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:226.0/255.0 green:83.0/255.0 blue:82.0/255.0 alpha:1]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[self fontAttributes]];
+    [[UINavigationBar appearance] setBarStyle:[self barStyle]];
+    [[UINavigationBar appearance] setBarTintColor:[self barTintColor]];
+    [[UINavigationBar appearance] setTintColor:[self tintColor]];
     
     //Attempt to undo that style for Message/Mail Compose View Controller
-    [[UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], [MFMessageComposeViewController class], nil] setBarTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], [MFMessageComposeViewController class], nil] setTintColor:nil];
-    [[UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], [MFMessageComposeViewController class], nil] setTitleTextAttributes:nil];
+    NSArray *mailAndMessage = @[
+                                [MFMailComposeViewController class],
+                                [MFMessageComposeViewController class],
+                                ];
+    
+                                
+                                
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:mailAndMessage] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:mailAndMessage] setTintColor:nil];
+    [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:mailAndMessage] setTitleTextAttributes:nil];
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+- (NSDictionary *)fontAttributes
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    return @{
+             NSFontAttributeName: [UIFont fontWithName:@"MarkerFelt-Wide" size:20.0f],
+             NSForegroundColorAttributeName: [UIColor whiteColor]
+             };
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (UIBarStyle)barStyle
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    return UIBarStyleBlack;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
+- (UIColor *)barTintColor
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    return [UIColor colorWithRed:226.0/255.0
+                           green:83.0/255.0
+                            blue:82.0/255.0
+                           alpha:1];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
+- (UIColor *)tintColor
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    return [UIColor whiteColor];
 }
 
 @end
