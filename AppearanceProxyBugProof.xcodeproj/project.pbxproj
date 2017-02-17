@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		33614CB31E5678BA00101EEF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33614CB21E5678BA00101EEF /* Launch Screen.storyboard */; };
-		33614CB61E567CD600101EEF /* APBCustoNavControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33614CB51E567CD600101EEF /* APBCustoNavControllerViewController.m */; };
+		33614CB61E567CD600101EEF /* APBCustomNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33614CB51E567CD600101EEF /* APBCustomNavController.m */; };
 		33614CB91E5680C600101EEF /* Main-custom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33614CB71E5680C600101EEF /* Main-custom.storyboard */; };
 		339F5D74183E828D00EE2E45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339F5D73183E828D00EE2E45 /* Foundation.framework */; };
 		339F5D76183E828D00EE2E45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339F5D75183E828D00EE2E45 /* CoreGraphics.framework */; };
@@ -40,7 +40,7 @@
 /* Begin PBXFileReference section */
 		33614CB21E5678BA00101EEF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../Launch Screen.storyboard"; sourceTree = "<group>"; };
 		33614CB41E567CD600101EEF /* APBCustomNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APBCustomNavController.h; sourceTree = "<group>"; };
-		33614CB51E567CD600101EEF /* APBCustoNavControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APBCustoNavControllerViewController.m; sourceTree = "<group>"; };
+		33614CB51E567CD600101EEF /* APBCustomNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APBCustomNavController.m; sourceTree = "<group>"; };
 		33614CB81E5680C600101EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-custom.storyboard"; sourceTree = "<group>"; };
 		339F5D70183E828D00EE2E45 /* AppearanceProxyBugProof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppearanceProxyBugProof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339F5D73183E828D00EE2E45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -132,7 +132,7 @@
 				339F5D8B183E828D00EE2E45 /* APBDetailViewController.h */,
 				339F5D8C183E828D00EE2E45 /* APBDetailViewController.m */,
 				33614CB41E567CD600101EEF /* APBCustomNavController.h */,
-				33614CB51E567CD600101EEF /* APBCustoNavControllerViewController.m */,
+				33614CB51E567CD600101EEF /* APBCustomNavController.m */,
 				339F5D8E183E828D00EE2E45 /* Images.xcassets */,
 				339F5D7A183E828D00EE2E45 /* Supporting Files */,
 			);
@@ -271,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33614CB61E567CD600101EEF /* APBCustoNavControllerViewController.m in Sources */,
+				33614CB61E567CD600101EEF /* APBCustomNavController.m in Sources */,
 				339F5D8A183E828D00EE2E45 /* APBMasterViewController.m in Sources */,
 				339F5D8D183E828D00EE2E45 /* APBDetailViewController.m in Sources */,
 				339F5D84183E828D00EE2E45 /* APBAppDelegate.m in Sources */,
